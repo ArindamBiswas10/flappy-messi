@@ -65,13 +65,19 @@ const FlappyBirdApp: React.FC = () => {
   const CANVAS_HEIGHT = 600;
 
   //Load Image when mounts first time
-  useEffect(()=>{
-    const img = new Image();
-    img.onload = () => {
-      messiImgRef.current = img;
-    };
-    img.src = '../assets/messiimg.png';
-  }, []);
+  useEffect(() => {
+    const messiNormal = new Image();
+    messiNormal.onload = () => {
+      messiNormalImg.current = messiNormal;
+    }
+    messiNormal.src = '../assets/messiimg.png';
+
+    const messiHit = new Image();
+    messiHit.onload = () => {
+      messiHitImg.current = messiHit;
+    }
+  
+  } ,[])
 
   //main game loop
   useEffect(()=>{
@@ -86,6 +92,8 @@ const FlappyBirdApp: React.FC = () => {
 
       ctx.fillStyle = 'Blue';
       ctx.fillRect(0,0,CANVAS_WIDTH,CANVAS_HEIGHT);
+
+      
 
 
     }
