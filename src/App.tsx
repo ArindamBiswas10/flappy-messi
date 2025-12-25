@@ -46,8 +46,14 @@ const FlappyBirdApp: React.FC = () => {
   //Refs
   const bgGameRef = useRef<HTMLAudioElement|null>(null);
   const gameOverBgmRef = useRef<HTMLAudioElement|null>(null);
-  const messiImgRef = useRef<HTMLImageElement|null>(null);
   const animationFrameRef = useRef<number|null>(null);
+
+  //messi images ref
+  const messiNormalImg = useRef<HTMLImageElement|null>(null);
+  const messiHitImg = useRef<HTMLImageElement|null>(null);
+
+
+  const [isHit, setIsHit] = useState<boolean>(false);
 
   //Game constants
   const GRAVITY = 0.5;
