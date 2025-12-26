@@ -60,6 +60,7 @@ const FlappyBirdApp: React.FC = () => {
   const JUMP = -8;
   const PIPE_WIDTH = 60;
   const PIPE_GAP = 180;
+  const PIPE_SPEED = 3;
   const MESSI_SIZE = 40;
   const CANVAS_WIDTH = 400;
   const CANVAS_HEIGHT = 600;
@@ -90,8 +91,37 @@ const FlappyBirdApp: React.FC = () => {
     const render = () : void => {
       const state = gameStateRef.current;
 
-      ctx.fillStyle = 'Blue';
+      ctx.fillStyle = '#87CEEB';
       ctx.fillRect(0,0,CANVAS_WIDTH,CANVAS_HEIGHT);
+
+      ctx.fillStyle = '#8B4513';
+      ctx.fillRect(0, CANVAS_HEIGHT -50, CANVAS_WIDTH, 50);
+       
+      //Game Physics
+      if(state.started && !state.over){
+
+        state.player.velocity += GRAVITY;
+
+        state.player.y += state.player.velocity;
+
+        //moving pipes to left
+        state.pipes = state.pipes.map((pipe:Pipe) => 
+          ({
+            ...pipe,
+            x: pipe.x - PIPE_SPEED
+          }))
+          .filter((pipe: Pipe) =>  pipe.x > -PIPE_WIDTH);// Remove off screen pipes
+
+          state.framecount++;
+          const lastPipe = state.pipes[state.pipes.length -1];
+
+         // if(!lastPipe || lastPipe.x < CANVS_WIDTH - 200){
+
+          }
+
+      }
+
+      ~
 
       
 
