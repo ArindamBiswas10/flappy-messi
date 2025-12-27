@@ -115,13 +115,11 @@ const FlappyBirdApp: React.FC = () => {
           state.framecount++;
           const lastPipe = state.pipes[state.pipes.length -1];
 
-         // if(!lastPipe || lastPipe.x < CANVS_WIDTH - 200){
-
-          }
+          if(!lastPipe || lastPipe.x < CANVAS_WIDTH - 200){}
 
       }
 
-      ~
+      
 
       
 
