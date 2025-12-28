@@ -115,7 +115,16 @@ const FlappyBirdApp: React.FC = () => {
           state.framecount++;
           const lastPipe = state.pipes[state.pipes.length -1];
 
-          if(!lastPipe || lastPipe.x < CANVAS_WIDTH - 200){}
+          if(!lastPipe || lastPipe.x < CANVAS_WIDTH - 200){
+            const newPipe: Pipe = {
+              x: CANVAS_WIDTH,
+              gapY: Math.random() * 200 + 100,
+              score: false
+            };
+            state.pipes.push(newPipe);
+          }
+          
+          }
 
       }
 
