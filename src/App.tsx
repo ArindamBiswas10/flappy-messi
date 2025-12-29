@@ -124,7 +124,15 @@ const FlappyBirdApp: React.FC = () => {
             state.pipes.push(newPipe);
           }
           
-          }
+          state.pipes.forEach((pipe: Pipe) => {
+            //Did pipe just passed player x position
+            const justPassed = pipe.x + PIPE_WIDTH < 100 && pipe.score + PIPE_WIDTH > 100 - PIPE_WIDTH;
+            if(justPassed && !pipe.score){
+              pipe.score = true;
+              state.score++;
+              setDisplayScore(state.score);
+            }
+          });
 
       }
 
