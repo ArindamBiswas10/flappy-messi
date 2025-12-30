@@ -134,6 +134,27 @@ const FlappyBirdApp: React.FC = () => {
             }
           });
 
+          if (checkCollision(state)) {
+          setIsHit(true); // Show sad Messi IMMEDIATELY when hit
+          
+          // Stop background music IMMEDIATELY
+          if (bgMusicRef.current) {
+            bgMusicRef.current.pause();
+            bgMusicRef.current.currentTime = 0;
+          }
+          
+          // Play game over sound IMMEDIATELY
+          if (gameOverSoundRef.current) {
+            gameOverSoundRef.current.play().catch(err => {
+              console.log('Game over sound play failed:', err);
+            });
+          }
+          
+          endGame();
+          return; // Stop rendering if game is over
+        }
+      }
+
       }
 
       
