@@ -155,6 +155,31 @@ const FlappyBirdApp: React.FC = () => {
         }
       }
 
+
+      // ===== STEP 3: Draw pipes =====
+      ctx.fillStyle = '#228B22'; // Green color
+      ctx.strokeStyle = '#1a6b1a'; // Dark green for outline
+      ctx.lineWidth = 3;
+      
+      state.pipes.forEach((pipe: Pipe) => {
+        // Draw top pipe
+        ctx.fillRect(pipe.x, 0, PIPE_WIDTH, pipe.gapY);
+        ctx.strokeRect(pipe.x, 0, PIPE_WIDTH, pipe.gapY);
+        
+        // Draw bottom pipe
+        const bottomPipeY = pipe.gapY + PIPE_GAP;
+        const bottomPipeHeight = CANVAS_HEIGHT - bottomPipeY;
+        ctx.fillRect(pipe.x, bottomPipeY, PIPE_WIDTH, bottomPipeHeight);
+        ctx.strokeRect(pipe.x, bottomPipeY, PIPE_WIDTH, bottomPipeHeight);
+        
+        // Draw pipe caps (the wider parts at top/bottom for 3D effect)
+        ctx.fillStyle = '#2a9d2a';
+        ctx.fillRect(pipe.x - 5, pipe.gapY - 20, PIPE_WIDTH + 10, 20);
+        ctx.fillRect(pipe.x - 5, bottomPipeY, PIPE_WIDTH + 10, 20);
+        ctx.fillStyle = '#228B22'; // Reset color
+      });
+
+
       }
 
       
